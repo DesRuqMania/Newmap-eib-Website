@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEWMAP-EIB Nasarawa State - Erosion Control Initiative</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #15803d;
+            --primary-light: #22c55e;
+            --primary-dark: #166534;
+            --secondary: #f3f4f6;
+            --accent: #f0fdf4;
+            --foreground: #1f2937;
+            --muted-foreground: #6b7280;
+            --border: #e5e7eb;
+            --background: #ffffff;
+            --card-bg: #ffffff;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --info: #3b82f6;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--foreground);
+            background-color: var(--background);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                padding: 0 2rem;
+            }
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--background);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .logo-subtitle {
+            font-size: 0.75rem;
+            color: var(--muted-foreground);
+            font-family: 'Inter', sans-serif;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--foreground);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        nav a.active {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.25rem;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="1200" height="600" fill="none"/><rect width="1200" height="600" fill="url(%23grid)"/></svg>');
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-light);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(34, 197, 94, 0.3);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--foreground);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Metrics Section */
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .metric-card {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 0.65rem;
+            border: 1px solid var(--border);
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .metric-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0.5rem 0;
+        }
+
+        .metric-label {
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Leadership Section */
+        .leadership {
+            background-color: var(--background);
+            padding: 5rem 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--muted-foreground);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .leader-card {
+            text-align: center;
+        }
+
+        .leader-image {
+            width: 100%;
+            height: 320px;
+            border-radius: 0.65rem;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            margin-bottom: 1.5rem;
+            background-color: #f3f4f6;
+        }
+
+        .leader-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .leader-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .leader-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--foreground);
+            margin-bottom: 1rem;
+        }
+
+        .leader-message {
+            background-color: rgba(34, 197, 94, 0.05);
+            padding: 1.5rem;
+            border-radius: 0.65rem;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--foreground);
+        }
+
+        /* Role-Based Access Section */
+        .roles-section {
+            background-color: var(--background);
+            padding: 5rem 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .role-card {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 0.65rem;
+            border: 2px solid var(--border);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .role-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .role-card.engineer {
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--primary);
+        }
+
+        .role-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .role-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--foreground);
+        }
+
+        .role-description {
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            border-bottom: 2px solid var(--border);
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            padding: 1rem 1.5rem;
+            background: none;
+            border: none;
+            font-weight: 600;
+            color: var(--muted-foreground);
+            cursor: pointer;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .tab-button.active {
+            color: var(--primary);
+        }
+
+        .tab-button.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Dashboard Section */
+        .dashboard-section {
+            background-color: var(--background);
+            padding: 5rem 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .dashboard-card {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 0.65rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .dashboard-card h3 {
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+            color: var(--foreground);
+        }
+
+        .site-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .site-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: var(--secondary);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--primary);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .team-members {
+            font-size: 0.75rem;
+            color: var(--muted-foreground);
+        }
+
+        /* Report Form */
+        .form-section {
+            background-color: var(--background);
+            padding: 5rem 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 0.65rem;
+            border: 1px solid var(--border);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--foreground);
+        }
+
+        .form-input,
+        .form-textarea,
+        .form-select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        /* Reports List */
+        .reports-list {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .report-item {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 0.65rem;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .report-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .report-site {
+            font-weight: 700;
+            color: var(--foreground);
+        }
+
+        .report-date {
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-approved {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+
+        .status-pending {
+            background-color: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+
+        .report-content {
+            margin: 1rem 0;
+        }
+
+        .report-label {
+            font-weight: 600;
+            color: var(--foreground);
+            margin-top: 0.75rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .report-text {
+            color: var(--muted-foreground);
+            font-size: 0.95rem;
+        }
+
+        /* Team Collaboration */
+        .team-section {
+            background-color: var(--background);
+            padding: 5rem 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .team-members-list {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 0.65rem;
+            border: 1px solid var(--border);
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .team-member-item {
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .team-member-item:hover {
+            background-color: var(--secondary);
+        }
+
+        .team-member-item.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .team-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.875rem;
+        }
+
+        .team-member-item.active .team-avatar {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .team-member-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .team-member-name {
+            font-weight: 600;
+            font-size: 0.875rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .team-member-role {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .status-active {
+            background-color: #10b981;
+        }
+
+        .status-offline {
+            background-color: #9ca3af;
+        }
+
+        .messages-container {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 0.65rem;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            height: 500px;
+        }
+
+        .messages-list {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+        }
+
+        .message-item {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 0.75rem;
+            border-left: 4px solid var(--info);
+        }
+
+        .message-item.milestone {
+            border-left-color: var(--success);
+            background-color: rgba(16, 185, 129, 0.05);
+        }
+
+        .message-item.alert {
+            border-left-color: var(--warning);
+            background-color: rgba(245, 158, 11, 0.05);
+        }
+
+        .message-item.update {
+            border-left-color: var(--info);
+            background-color: rgba(59, 130, 246, 0.05);
+        }
+
+        .message-author {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .message-time {
+            font-size: 0.75rem;
+            color: var(--muted-foreground);
+        }
+
+        .message-content {
+            font-size: 0.95rem;
+            color: var(--foreground);
+        }
+
+        .message-input-group {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .message-input-group input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .message-input-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 3rem 0;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            font-size: 1.125rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.875rem;
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .leadership-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .roles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .messages-container {
+                height: auto;
+            }
+        }
+
+        /* Utility Classes */
+        .hidden {
+            display: none;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-4 {
+            margin-top: 1rem;
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+
+        .gap-2 {
+            gap: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    NEWMAP-EIB
+                    <div class="logo-subtitle">Nasarawa State Erosion Control</div>
+                </div>
+                <nav>
+                    <a href="#home" class="nav-link active">Home</a>
+                    <a href="#dashboard" class="nav-link">Dashboard</a>
+                    <a href="#reports" class="nav-link">Reports</a>
+                    <a href="#team" class="nav-link">Team</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Nasarawa State Erosion Control Initiative</h1>
+                <p>Restoring land, protecting communities, building sustainable futures through professional project management and collaborative teamwork</p>
+                <button class="btn btn-primary" onclick="scrollToSection('dashboard')">View Dashboard</button>
+                <button class="btn btn-outline" onclick="scrollToSection('reports')" style="margin-left: 1rem;">Submit Report</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Metrics Section -->
+    <section class="container" style="padding: 3rem 0;">
+        <div class="metrics">
+            <div class="metric-card">
+                <div class="metric-icon">📍</div>
+                <div class="metric-value">12</div>
+                <div class="metric-label">Active Sites</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-icon">👥</div>
+                <div class="metric-value">48</div>
+                <div class="metric-label">Team Members</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-icon">🌱</div>
+                <div class="metric-value">500+</div>
+                <div class="metric-label">Hectares Restored</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-icon">✓</div>
+                <div class="metric-value">94%</div>
+                <div class="metric-label">Efficiency Rate</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section class="leadership">
+        <div class="container">
+            <h2 class="section-title">Project Leadership</h2>
+            <p class="section-subtitle">Meet the dedicated leaders driving erosion control excellence in Nasarawa State</p>
+            <div class="leadership-grid">
+                <!-- Project Coordinator -->
+                <div class="leader-card">
+                    <div class="leader-image">
+                        <img src="https://private-us-east-1.manuscdn.com/sessionFile/kTbx5mSUJVeVREzi07yNth/sandbox/zdJ2UOelsplJCoeELksj7T-img-2_1770897722000_na1fn_ZHItbW9oYW1tZWQtcG9ydHJhaXQ.png?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUva1RieDVtU1VKVmVWUkV6aTA3eU50aC9zYW5kYm94L3pkSjJVT2Vsc3BsSkNvZUVMa3NqN1QtaW1nLTJfMTc3MDg5NzcyMjAwMF9uYTFmbl9aSEl0Ylc5b1lXMXRaV1F0Y0c5eWRISmhhWFEucG5nP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTkyMCxoXzE5MjAvZm9ybWF0LHdlYnAvcXVhbGl0eSxxXzgwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=WXSEejeKL~FGusJ0kt3bFTBqPMGQyHOG18M17zcfWShR98bf~0P~dpw8Sz93ql6ktOhY3S0Snwk1dWSnBSUxiwnQyrYnFL-EYqaGXl0XtbI0mSBbHyyOL0effF9RIW1pykcXYXrQUhPK6ojrg0WONOk4bOCQePKb8U5Z~WY6h0pqEnB9CDfJYBXmV6zERAgcZJMtSyrhliaSSOqvDQF3exaR02b-x9m2JjzbK5pGtGOT7I4yrDq3r6NuVP0YGbnWHhrOmYyYOvTcfyHT4AcB4cbwweh~zD~B3kkOUrYZEhbuibcfi6qate3j2ANm8WxyXy2X5xNU75mvd-VE38RdnQ__" alt="Dr. Mohammed Ismail P.hD">
+                    </div>
+                    <div class="leader-name">Dr. Mohammed Ismail, P.hD</div>
+                    <div class="leader-title">Project Coordinator (Head of State)</div>
+                    <div class="leader-message">
+                        Welcome to the NEWMAP-EIB Nasarawa State platform. As Project Coordinator, I am committed to driving sustainable erosion control initiatives that restore our land and improve community livelihoods. This platform represents our dedication to professional project management, transparent reporting, and collaborative excellence. Together, we are making a tangible difference in environmental restoration.
+                    </div>
+                </div>
+
+                <!-- Project Engineer -->
+                <div class="leader-card">
+                    <div class="leader-image">
+                        <img src="https://private-us-east-1.manuscdn.com/sessionFile/kTbx5mSUJVeVREzi07yNth/sandbox/zdJ2UOelsplJCoeELksj7T-img-1_1770897722000_na1fn_ZW5nci1zdW5kYXktcG9ydHJhaXQ.png?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUva1RieDVtU1VKVmVWUkV6aTA3eU50aC9zYW5kYm94L3pkSjJVT2Vsc3BsSkNvZUVMa3NqN1QtaW1nLTFfMTc3MDg5NzcyMjAwMF9uYTFmbl9aVzVuY2kxemRXNWtZWGt0Y0c5eWRISmhhWFEucG5nP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTkyMCxoXzE5MjAvZm9ybWF0LHdlYnAvcXVhbGl0eSxxXzgwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=QmVFTvAHOWeaVnLYfy7QNg8zjaHmirx1-4XxcTcSTGKawdUG5pIgJH-9CzMRhKtrwLafGejRk-UbPH8eLXnYzzEiJC84NH8L-s5RXMF6S-8XDZw7GPBtwJ8rprCo7GcSZtR0nrac29pa2f8TZF1vqtqGLbfrDFHG6gBmDQUwK7NUkQgrcoxjFT8mSdJr7c~v6Qkyex6Vps8fDbAugHrhGRq-PJSQoEUZlLFsKRk5dKujs64wfdbTInSu4ve2T5YVj7b3fqHf4WH5zNPl1L4nZG02zoGXl4sXILwWNXDXtLXfRz7dYpg4NjrkKrNo9r0HiXgWVO-gU48UUGAj05n4zg__" alt="Engr. Sunday Adaogoshi Eya">
+                    </div>
+                    <div class="leader-name">Engr. Sunday Adaogoshi Eya</div>
+                    <div class="leader-title">Project Engineer</div>
+                    <div class="leader-message">
+                        As the Project Engineer for NEWMAP-EIB, I oversee the technical implementation of all erosion control activities across Nasarawa State. My focus is on ensuring quality workmanship, adherence to engineering standards, and effective site management. Through this platform, we maintain transparent communication and real-time progress tracking to deliver sustainable environmental solutions.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Role-Based Access Section -->
+    <section class="roles-section" id="roles">
+        <div class="container">
+            <h2 class="section-title">Role-Based Access</h2>
+            <p class="section-subtitle">Each team member has customized access and tools tailored to their specific responsibilities</p>
+            <div class="roles-grid">
+                <div class="role-card engineer" onclick="scrollToSection('reports')">
+                    <div class="role-icon">📋</div>
+                    <div class="role-title">Project Engineer</div>
+                    <div class="role-description">Engr. Sunday Adaogoshi Eya - Report work progress, document site conditions, and track completion status</div>
+                    <button class="btn btn-primary" style="width: 100%;">Access</button>
+                </div>
+                <div class="role-card" onclick="scrollToSection('dashboard')">
+                    <div class="role-icon">👷</div>
+                    <div class="role-title">Site Supervisor</div>
+                    <div class="role-description">Oversee daily activities, manage team coordination, and approve reports</div>
+                    <button class="btn btn-outline" style="width: 100%; color: var(--primary); border-color: var(--primary);">Access</button>
+                </div>
+                <div class="role-card" onclick="scrollToSection('dashboard')">
+                    <div class="role-icon">📊</div>
+                    <div class="role-title">Project Coordinator</div>
+                    <div class="role-description">Monitor overall progress, analyze metrics, and manage project coordination</div>
+                    <button class="btn btn-outline" style="width: 100%; color: var(--primary); border-color: var(--primary);">Access</button>
+                </div>
+                <div class="role-card" onclick="scrollToSection('team')">
+                    <div class="role-icon">👥</div>
+                    <div class="role-title">Team Lead</div>
+                    <div class="role-description">Coordinate team efforts, facilitate collaboration, and ensure quality standards</div>
+                    <button class="btn btn-outline" style="width: 100%; color: var(--primary); border-color: var(--primary);">Access</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section class="dashboard-section" id="dashboard">
+        <div class="container">
+            <h2 class="section-title">Project Dashboard</h2>
+            <p class="section-subtitle">Real-time monitoring of all erosion control activities across Nasarawa State</p>
+            
+            <div class="tabs">
+                <button class="tab-button active" onclick="switchTab(event, 'overview')">Overview</button>
+                <button class="tab-button" onclick="switchTab(event, 'sites')">Site Progress</button>
+                <button class="tab-button" onclick="switchTab(event, 'metrics')">Metrics</button>
+            </div>
+
+            <div id="overview" class="tab-content active">
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3>🎯 Project Status</h3>
+                        <div class="site-item">
+                            <div class="site-name">Overall Completion <span>68%</span></div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 68%;"></div>
+                            </div>
+                        </div>
+                        <div class="site-item">
+                            <div class="site-name">Budget Utilization <span>72%</span></div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 72%;"></div>
+                            </div>
+                        </div>
+                        <div class="site-item">
+                            <div class="site-name">Schedule Adherence <span>85%</span></div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3>📈 Key Metrics</h3>
+                        <div style="padding: 1rem 0;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                                <span>Active Sites:</span>
+                                <strong style="color: var(--primary);">12</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                                <span>Team Members:</span>
+                                <strong style="color: var(--primary);">48</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                                <span>Hectares Restored:</span>
+                                <strong style="color: var(--primary);">500+</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>Efficiency Rate:</span>
+                                <strong style="color: var(--primary);">94%</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3>⚠️ Recent Alerts</h3>
+                        <div style="padding: 1rem 0;">
+                            <div style="padding: 0.75rem; background-color: rgba(245, 158, 11, 0.1); border-left: 3px solid var(--warning); margin-bottom: 0.75rem; border-radius: 0.25rem;">
+                                <strong style="color: var(--warning);">Weather Alert</strong>
+                                <p style="font-size: 0.875rem; margin-top: 0.25rem;">Heavy rains expected next week</p>
+                            </div>
+                            <div style="padding: 0.75rem; background-color: rgba(16, 185, 129, 0.1); border-left: 3px solid var(--success); border-radius: 0.25rem;">
+                                <strong style="color: var(--success);">Milestone Achieved</strong>
+                                <p style="font-size: 0.875rem; margin-top: 0.25rem;">Nasarawa site 85% complete</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="sites" class="tab-content">
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3>Site Progress Tracking</h3>
+                        <div class="site-item">
+                            <div class="site-name">Keffi - Gully Rehabilitation <span>72%</span></div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 72%;"></div>
+                            </div>
+                            <div class="team-members">8 team members</div>
+                        </div>
+                        <div class="site-item">
+                            <div class="site-name">Lafia - Soil Conservation <span>58%</span></div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 58%;"></div>
+                            </div>
+                            <div class="team-members">6 team members</div>
+                        </div>
+                        <div class="site-item">
+                            <div class="site-name">Nasarawa - Terracing <span>85%</span></div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 85%;"></div>
+                            </div>
+                            <div class="team-members">10 team members</div>
+                        </div>
+                        <div class="site-item">
+                            <div class="site-name">Akwanga - Water Management <span>42%</span></div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 42%;"></div>
+                            </div>
+                            <div class="team-members">5 team members</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="metrics" class="tab-content">
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3>📊 Performance Metrics</h3>
+                        <div style="padding: 1rem 0;">
+                            <div style="margin-bottom: 1.5rem;">
+                                <strong>Safety Record</strong>
+                                <p style="font-size: 0.875rem; color: var(--muted-foreground); margin-top: 0.25rem;">100 days without incidents</p>
+                            </div>
+                            <div style="margin-bottom: 1.5rem;">
+                                <strong>Task Completion</strong>
+                                <p style="font-size: 0.875rem; color: var(--muted-foreground); margin-top: 0.25rem;">94% completion rate</p>
+                            </div>
+                            <div style="margin-bottom: 1.5rem;">
+                                <strong>Environmental Impact</strong>
+                                <p style="font-size: 0.875rem; color: var(--muted-foreground); margin-top: 0.25rem;">500+ hectares restored</p>
+                            </div>
+                            <div>
+                                <strong>Community Engagement</strong>
+                                <p style="font-size: 0.875rem; color: var(--muted-foreground); margin-top: 0.25rem;">15 communities involved</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reports Section -->
+    <section class="form-section" id="reports">
+        <div class="container">
+            <h2 class="section-title">Work Status Reports</h2>
+            <p class="section-subtitle">Project Engineer: Engr. Sunday Adaogoshi Eya</p>
+
+            <div class="form-container">
+                <h3 style="margin-bottom: 1.5rem;">Submit Work Status Report</h3>
+                <form id="reportForm" onsubmit="submitReport(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Select Site</label>
+                            <select class="form-select" required>
+                                <option value="">Choose a site...</option>
+                                <option value="keffi">Keffi - Gully Rehabilitation</option>
+                                <option value="lafia">Lafia - Soil Conservation</option>
+                                <option value="nasarawa">Nasarawa - Terracing Project</option>
+                                <option value="akwanga">Akwanga - Water Management</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Report Date</label>
+                            <input type="date" class="form-input" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Work Completed</label>
+                        <textarea class="form-textarea" placeholder="Describe the work completed on site..." required></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Progress Percentage (%)</label>
+                            <input type="number" class="form-input" min="0" max="100" placeholder="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Work Remaining</label>
+                            <input type="text" class="form-input" placeholder="Describe remaining work..." required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Additional Notes</label>
+                        <textarea class="form-textarea" placeholder="Any challenges, observations, or recommendations..." style="min-height: 100px;"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem;">Submit Report</button>
+                </form>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <h3 style="margin-bottom: 1.5rem;">Recent Reports</h3>
+                <div class="reports-list">
+                    <div class="report-item">
+                        <div class="report-header">
+                            <div>
+                                <div class="report-site">Keffi - Gully Rehabilitation</div>
+                                <div class="report-date">2026-02-12</div>
+                            </div>
+                            <span class="status-badge status-approved">Approved</span>
+                        </div>
+                        <div class="report-content">
+                            <div class="report-label">Work Completed:</div>
+                            <div class="report-text">Completed terracing on 2.5 hectares, installed water management structures</div>
+                            <div class="report-label" style="margin-top: 1rem;">Progress: 72%</div>
+                            <div class="progress-bar" style="margin-top: 0.5rem;">
+                                <div class="progress-fill" style="width: 72%;"></div>
+                            </div>
+                            <div class="report-label">Work Remaining:</div>
+                            <div class="report-text">Vegetation planting and monitoring (4 weeks)</div>
+                        </div>
+                    </div>
+
+                    <div class="report-item">
+                        <div class="report-header">
+                            <div>
+                                <div class="report-site">Lafia - Soil Conservation</div>
+                                <div class="report-date">2026-02-11</div>
+                            </div>
+                            <span class="status-badge status-approved">Approved</span>
+                        </div>
+                        <div class="report-content">
+                            <div class="report-label">Work Completed:</div>
+                            <div class="report-text">Soil stabilization on 1.8 hectares, completed survey</div>
+                            <div class="report-label" style="margin-top: 1rem;">Progress: 58%</div>
+                            <div class="progress-bar" style="margin-top: 0.5rem;">
+                                <div class="progress-fill" style="width: 58%;"></div>
+                            </div>
+                            <div class="report-label">Work Remaining:</div>
+                            <div class="report-text">Slope reinforcement and drainage system installation (6 weeks)</div>
+                        </div>
+                    </div>
+
+                    <div class="report-item">
+                        <div class="report-header">
+                            <div>
+                                <div class="report-site">Nasarawa - Terracing Project</div>
+                                <div class="report-date">2026-02-10</div>
+                            </div>
+                            <span class="status-badge status-approved">Approved</span>
+                        </div>
+                        <div class="report-content">
+                            <div class="report-label">Work Completed:</div>
+                            <div class="report-text">Completed 85% of terracing work, installed retention walls</div>
+                            <div class="report-label" style="margin-top: 1rem;">Progress: 85%</div>
+                            <div class="progress-bar" style="margin-top: 0.5rem;">
+                                <div class="progress-fill" style="width: 85%;"></div>
+                            </div>
+                            <div class="report-label">Work Remaining:</div>
+                            <div class="report-text">Final surface preparation and vegetation (2 weeks)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Collaboration Section -->
+    <section class="team-section" id="team">
+        <div class="container">
+            <h2 class="section-title">Team Collaboration</h2>
+            <p class="section-subtitle">Unified communication platform for project coordination</p>
+
+            <div class="team-grid">
+                <!-- Team Members List -->
+                <div class="team-members-list">
+                    <div class="team-member-item active" onclick="selectTeamMember(this, 'tm-001')">
+                        <div class="team-avatar">MI</div>
+                        <div class="team-member-info">
+                            <div class="team-member-name">Dr. Mohammed Ismail, P.hD</div>
+                            <div class="team-member-role">Project Coordinator (Head)</div>
+                        </div>
+                        <div class="status-indicator status-active"></div>
+                    </div>
+                    <div class="team-member-item" onclick="selectTeamMember(this, 'tm-002')">
+                        <div class="team-avatar">SA</div>
+                        <div class="team-member-info">
+                            <div class="team-member-name">Engr. Sunday Adaogoshi Eya</div>
+                            <div class="team-member-role">Project Engineer</div>
+                        </div>
+                        <div class="status-indicator status-active"></div>
+                    </div>
+                    <div class="team-member-item" onclick="selectTeamMember(this, 'tm-003')">
+                        <div class="team-avatar">JO</div>
+                        <div class="team-member-info">
+                            <div class="team-member-name">Supervisor James Okoro</div>
+                            <div class="team-member-role">Site Supervisor</div>
+                        </div>
+                        <div class="status-indicator status-active"></div>
+                    </div>
+                    <div class="team-member-item" onclick="selectTeamMember(this, 'tm-004')">
+                        <div class="team-avatar">FA</div>
+                        <div class="team-member-info">
+                            <div class="team-member-name">Dr. Fatima Adeyemi</div>
+                            <div class="team-member-role">Project Manager</div>
+                        </div>
+                        <div class="status-indicator status-active"></div>
+                    </div>
+                    <div class="team-member-item" onclick="selectTeamMember(this, 'tm-005')">
+                        <div class="team-avatar">PN</div>
+                        <div class="team-member-info">
+                            <div class="team-member-name">Eng. Peter Nwankwo</div>
+                            <div class="team-member-role">Team Lead</div>
+                        </div>
+                        <div class="status-indicator status-offline"></div>
+                    </div>
+                    <div class="team-member-item" onclick="selectTeamMember(this, 'tm-006')">
+                        <div class="team-avatar">CO</div>
+                        <div class="team-member-info">
+                            <div class="team-member-name">Eng. Chukwu Obi</div>
+                            <div class="team-member-role">Site Coordinator</div>
+                        </div>
+                        <div class="status-indicator status-active"></div>
+                    </div>
+                </div>
+
+                <!-- Messages Container -->
+                <div class="messages-container">
+                    <div class="messages-list">
+                        <div class="message-item milestone">
+                            <div class="message-author">
+                                Dr. Mohammed Ismail, P.hD
+                                <span class="message-time">2 hours ago</span>
+                            </div>
+                            <div class="message-content">🎉 Excellent progress across all sites! Engr. Sunday technical oversight has been outstanding. Terracing work is ahead of schedule.</div>
+                        </div>
+                        <div class="message-item alert">
+                            <div class="message-author">
+                                Supervisor James Okoro
+                                <span class="message-time">4 hours ago</span>
+                            </div>
+                            <div class="message-content">⚠️ Weather alert: Heavy rains expected next week. Please secure all materials and equipment. Engr. Sunday, can you coordinate?</div>
+                        </div>
+                        <div class="message-item update">
+                            <div class="message-author">
+                                Engr. Sunday Adaogoshi Eya
+                                <span class="message-time">6 hours ago</span>
+                            </div>
+                            <div class="message-content">✓ Completed soil stabilization survey on 1.8 hectares at Lafia site. All measurements documented. Report submitted.</div>
+                        </div>
+                        <div class="message-item update">
+                            <div class="message-author">
+                                Engr. Sunday Adaogoshi Eya
+                                <span class="message-time">8 hours ago</span>
+                            </div>
+                            <div class="message-content">Team coordination meeting scheduled for tomorrow at 10 AM. Please confirm attendance. Will discuss Phase 2 implementation.</div>
+                        </div>
+                        <div class="message-item milestone">
+                            <div class="message-author">
+                                Dr. Mohammed Ismail, P.hD
+                                <span class="message-time">1 day ago</span>
+                            </div>
+                            <div class="message-content">🏆 Nasarawa site reached 85% completion! Fantastic technical execution by Engr. Sunday and the entire team.</div>
+                        </div>
+                    </div>
+                    <div class="message-input-group">
+                        <input type="text" placeholder="Share an update with the team..." id="messageInput">
+                        <button class="btn btn-primary" onclick="sendMessage()" style="padding: 0.75rem 1rem;">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>NEWMAP-EIB</h4>
+                    <p>Nasarawa State Erosion Control Initiative</p>
+                    <p style="font-size: 0.875rem; margin-top: 1rem;">Project Coordinator: Dr. Mohammed Ismail, P.hD</p>
+                    <p style="font-size: 0.875rem;">Project Engineer: Engr. Sunday Adaogoshi Eya</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#dashboard">Dashboard</a></li>
+                        <li><a href="#reports">Reports</a></li>
+                        <li><a href="#team">Team</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Project Guidelines</a></li>
+                        <li><a href="#">Safety Protocols</a></li>
+                        <li><a href="#">Technical Standards</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Training Materials</a></li>
+                        <li><a href="#">Feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 NEWMAP-EIB Nasarawa State. All rights reserved. | Professional Erosion Control Initiative</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+                updateActiveNav(sectionId);
+            }
+        }
+
+        function updateActiveNav(sectionId) {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            const activeLink = document.querySelector(`a[href="#${sectionId}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+
+        // Tab switching
+        function switchTab(event, tabId) {
+            event.preventDefault();
+            
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Report form submission
+        function submitReport(event) {
+            event.preventDefault();
+            alert('Report submitted successfully! Thank you for the update.');
+            document.getElementById('reportForm').reset();
+        }
+
+        // Team member selection
+        function selectTeamMember(element, memberId) {
+            document.querySelectorAll('.team-member-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            element.classList.add('active');
+        }
+
+        // Send message
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            if (input.value.trim()) {
+                alert('Message sent to team!');
+                input.value = '';
+            }
+        }
+
+        // Update active nav on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 200) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            if (currentSection) {
+                updateActiveNav(currentSection);
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('NEWMAP-EIB Website loaded successfully');
+        });
+    </script>
+</body>
+</html>
