@@ -143,10 +143,7 @@
             opacity: 0.1;
         }
 
-        <div class="hero-carousel">
-    <img src="WhatsApp Image 2026-04-09 at 6.43.36 PM.jpeg" class="carousel-image active">
-    <img src="WhatsApp Image 2026-04-09 at 6.43.36 PM (1).jpeg" class="carousel-image">
-</div>
+        
         .hero-content {
             position: relative;
             z-index: 1;
@@ -900,15 +897,22 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <h1> Nigeria Climate Adaptation-Erosion and Watershed Project (NEWMAP-EIB) Nasarawa State </h1>
-                <p>Restoring land, protecting communities, building sustainable futures through professional project management and collaborative teamwork</p>
-                <button class="btn btn-primary" onclick="scrollToSection('dashboard')">View Dashboard</button>
-                <button class="btn btn-outline" onclick="scrollToSection('reports')" style="margin-left: 1rem;">Submit Report</button>
-            </div>
+
+    <!-- ===== ADDED: IMAGE CAROUSEL ===== -->
+    <div class="hero-carousel">
+        <img src="WhatsApp Image 2026-04-09 at 6.43.36 PM.jpeg" class="carousel-image active">
+        <img src="WhatsApp Image 2026-04-09 at 6.43.36 PM (1).jpeg" class="carousel-image">
+    </div>
+
+    <div class="container">
+        <div class="hero-content">
+            <h1> Nigeria Climate Adaptation-Erosion and Watershed Project (NEWMAP-EIB) Nasarawa State </h1>
+            <p>Restoring land, protecting communities, building sustainable futures through professional project management and collaborative teamwork</p>
+            <button class="btn btn-primary" onclick="scrollToSection('dashboard')">View Dashboard</button>
+            <button class="btn btn-outline" onclick="scrollToSection('reports')" style="margin-left: 1rem;">Submit Report</button>
         </div>
-    </section>
+    </div>
+</section>
     
 
     <!-- Metrics Section -->
@@ -1412,6 +1416,31 @@
     </footer>
 
     <script>
+        // ===== ADDED: HERO CAROUSEL SCRIPT =====
+let currentSlide = 0;
+
+function initCarousel() {
+    const slides = document.querySelectorAll('.carousel-image');
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.remove('active');
+            if (i === index) slide.classList.add('active');
+        });
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    if (slides.length > 0) {
+        showSlide(0);
+        setInterval(nextSlide, 5000);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', initCarousel);
         // Navigation
         function scrollToSection(sectionId) {
             const section = document.getElementById(sectionId);
